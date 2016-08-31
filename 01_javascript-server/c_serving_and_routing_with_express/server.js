@@ -26,8 +26,18 @@ http.createServer(app)//here we tell the http module to start our server, using 
 
 
 //this is where we set-up our routes
-app.route('/blog', serveBlog);
+app.get('/blog', serveBlog);
 
 function serveBlog(req, res, err){
-  res.sendFile('blog.html');
+
+  //when you send back a file, you have to specify the directory name, so we pass some options to the function sendFile
+  res.sendFile('blog.html', {root: __dirname + '/public/'});
+
+  //or we can do it that way
+  //res.sendFile(path.join(__dirname, './public', 'blog.html'));
 }
+
+app.get('/redirect/:loc', function(req, res, err){
+  console.log(req.params.loc);
+  res.send('access a link at <a href="../'+req.params.loc+'.html">this location</a>');
+});
