@@ -25,6 +25,8 @@ var my_database = mongoose.connection;
 //in case there's an 'error' event, we log it to the console
 my_database.on('error', console.error.bind(console, 'connection error:'));
 
+//if you always get an error, make sure you mongodb is running, and not just installed!
+
 //in case of an 'open' event, we say that we've successfully opened our connection.
 //we can also do other things like check for existing data, etc.
 
@@ -42,18 +44,19 @@ my_database.on('open', function(){
 
   Song = mongoose.model('Song', songSchema);
 
-  var my_song = new Song({
-    title: 'Nothing Can Come Between Us',
-    artist: 'Sade',
-    URL: 'https://www.youtube.com/watch?v=_oVI0GW-Xd4'
-  });
-
-  my_song.save(function(err, my_song){
-    if(err){
-      return console.error(err);
-    }else{
-      console.log('successfully saved new song: '+my_song.title);
-    }
+  //----------------------------UNCOMMENT THIS PART TO SAVE A SONG EVERYTIME
+  // var my_song = new Song({
+  //   title: 'Nothing Can Come Between Us',
+  //   artist: 'Sade',
+  //   URL: 'https://www.youtube.com/watch?v=_oVI0GW-Xd4'
+  // });
+  //
+  // my_song.save(function(err, my_song){
+  //   if(err){
+  //     return console.error(err);
+  //   }else{
+  //     console.log('successfully saved new song: '+my_song.title);
+  //   }
   });
 
   Song.find(function(err, all_songs){
