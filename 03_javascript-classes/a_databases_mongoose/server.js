@@ -57,7 +57,7 @@ my_database.on('open', function(){
   //   }else{
   //     console.log('successfully saved new song: '+my_song.title);
   //   }
-  });
+  //});
 
   Song.find(function(err, all_songs){
     console.log(all_songs);
