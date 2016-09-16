@@ -1,0 +1,17 @@
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/UnityEngine.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/UnityEditor.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/UnityEngine.UI.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/UnityEngine.Networking.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Mono.Cecil.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Unity.SerializationLogic.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Unity.DataContract.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/ICSharpCode.NRefactory.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Unity.UNetWeaver.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Unity.UNetWeaver.dll.mdb
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Unity.CecilTools.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Mono.Cecil.Pdb.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Mono.Cecil.Mdb.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/obj/Debug/Assembly-CSharp.dll
+/Users/Pierre/Documents/Teaching/_NYUAD/ThePoliticsOfCode/Workshops/04_unity-simulations/SimulatedSociety/obj/Debug/Assembly-CSharp.dll.mdb
