@@ -10,10 +10,10 @@ var t = new Twit({
 
 var listed_users = [];
 
-t.get('search/tweets', {q: 'france since:2016-09-26', count: 100}, function(err, data, response){
+t.get('search/tweets', {q: 'terrorism since:2016-09-26', count: 100}, function(err, data, response){
   var found_user = {};
   for(var result in data.statuses){
-    found_user.username = data.statuses[result].user.name;
+    found_user.username = data.statuses[result].user.screen_name;
     found_user.status_id = data.statuses[result].user.id;
 
     listed_users.push(found_user);

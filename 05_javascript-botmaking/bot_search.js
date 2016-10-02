@@ -9,6 +9,10 @@ var t = new Twit({
 });
 
 
-t.get('search/tweets', {q: 'france since:2015-09-28', count: 100}, function(err, data, response){
-  console.log(data);
-});
+  t.get('search/tweets', {q: 'france', count: 10}, function(err, data, response){
+    console.log(data.statuses[0]);
+
+    // for(var i = 0; i < data.statuses.length; i++){
+    //   console.log('tweet #'+i+' >'+data.statuses[i].text);
+    // }
+  });
