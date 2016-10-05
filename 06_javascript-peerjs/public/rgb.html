@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title>peer - rgb</title>
+  <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+</head>
+<body onload="init()">
+
+  <div id="name">rgb</div><br>
+  <input id="peer-id" type="text" name="peer id"></input><input type="button" onclick="connect()" value="connect"></input><br>
+  <br>
+  <input id="peer-msg" type="text" name="peer msg"></input><input type="button" onclick="send()" value="send"></input><br>
+  <br>
+  words: <span id="data-holder">-</span>
+  <div id="status">status: offline</div>
+  <video id="video-holder-other" width="480" height="320" src=""></video>
+    <video id="video-holder-self" width="480" height="320" src=""></video>
+
+  <script>
+  var peer;
+  var call;
+  var status_elem;
+  var data_elem;
+
+  var video_elem_other;
+  var video_elem_self;
+
+  var my_stream;
+
+  function init(){
+    peer = new Peer('rgb', {host: 'localhost', port: 2046, path: '/peer'});
+    status_elem = document.getElementById('status');
+    data_elem = document.getElementById('data-holder');
+
+    video_elem_other = document.getElementById('video-holder-other');
+    video_elem_self = document.getElementById('video-holder-self');
+
+    console.log('connected', peer);
+    status_elem.innerHTML = 'status: connected to server';
+
+    window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    navigator.getUserMedia({video: true, audio: true}, function(stream) {
+
+      my_stream = stream;
+
+      video_elem_self.src = window.URL.createObjectURL(stream) || stream;
+      video_elem_self.play();
+
+      peer.on('call', function(incoming_call) {
+        incoming_call.answer(my_stream); // Answer the call with an A/V stream.
+        incoming_call.on('stream', function(remoteStream) {
+          video_elem_other.src = window.URL.createObjectURL(remoteStream) || remoteStreamstream;
+          video_elem_other.setAttribute("autoplay", "true");
+          video_elem_other.play();
+        });
+      });
+    }, function(err) {
+      console.log('Failed to get local stream' ,err);
+    });
+
+  }
+
+  function connect(){
+    var id = document.getElementById('peer-id').value;
+
+    window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+    navigator.getUserMedia({video: true, audio:true}, function(stream){
+
+
+      call = peer.call(id, stream);
+      call.on('stream', function(remoteStream){
+        video_elem_other.src = window.URL.createObjectURL(stream) || stream;
+        video_elem_other.setAttribute("autoplay", "true");
+        video_elem_other.play();
+      });
+    }, function(err){
+      console.log('failed to get stream',err);
+    });
+
+    status_elem.innerHTML = 'status: connecting to '+id+'...';
+  }
+
+  function send(){
+    var msg = document.getElementById('peer-msg').value;
+    link.send(msg);
+  }
+
+  </script>
+</body>
+</html>
