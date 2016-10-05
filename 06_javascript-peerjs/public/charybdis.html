@@ -2,6 +2,10 @@
 <head>
   <title>peer - charybdis</title>
   <script src="http://cdn.peerjs.com/0.3/peer.js"></script>
+  <script>
+    var my_peer_id = 'charybdis';
+  </script>
+  <script src="peer-chat.js"></script>
 </head>
 <body onload="init()">
 
@@ -12,53 +16,5 @@
 <br>
 words: <span id="data-holder">-</span>
 <div id="status">status: offline</div>
-
-<script>
-var peer;
-var link;
-var status_elem;
-var data_elem;
-
-var my_peer_id = 'charybdis';
-var api_key = 'c83xx8lhssoo5hfr';
-
-function init(){
-  //this is where we connect to a custom peerServer
-  // peer = new Peer('charybdis', {host: 'localhost', port: 2046, path: '/peer'});
-
-  //this is where we connect to a server hosted by peerJS - go to http://peerjs.com/peerserver to get an api key
-  peer = new Peer(my_peer_id, {key: api_key});
-
-  status_elem = document.getElementById('status');
-  data_elem = document.getElementById('data-holder');
-  console.log('connected', peer);
-  status_elem.innerHTML = 'status: connected to server';
-
-  peer.on('connection', function(connect){
-    connect.on('data', function(data){
-      data_elem.innerHTML = data;
-    });
-  });
-}
-
-function connect(){
-  var id = document.getElementById('peer-id').value;
-
-  link = peer.connect(id);
-  status_elem.innerHTML = 'status: connecting to '+id+'...';
-
-  link.on('open', function(){
-    status_elem.innerHTML = 'status: opened connection to '+id;
-  });
-}
-
-
-
-function send(){
-  var msg = document.getElementById('peer-msg').value;
-  link.send(msg);
-}
-
-</script>
 </body>
 </html>
