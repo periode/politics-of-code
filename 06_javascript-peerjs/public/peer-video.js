@@ -36,7 +36,7 @@ function init(){
 
     my_stream = stream;
 
-    //we set the source of the video tag that we reserved for or own stream
+    // //we set the source of the video tag that we reserved for or own stream
     video_elem_self.src = window.URL.createObjectURL(my_stream) || my_stream;
     //let's not forget to play it!
     video_elem_self.play();
@@ -50,7 +50,8 @@ function init(){
       //whenever we get the a/v stream from the incoming call, we want to display it on our page
       incoming_call.on('stream', function(remoteStream) {
         //we set it as the source of the video tag we reserved for the other stream
-        video_elem_other.src = window.URL.createObjectURL(remoteStream) || remoteStreamstream;
+
+        video_elem_other.src = window.URL.createObjectURL(remoteStream) || remoteStream;
         //let's not forget to play it!
         video_elem_other.setAttribute("autoplay", "true");
         video_elem_other.play();
@@ -78,12 +79,6 @@ function connect(){
     //let's make a call to the id we've gotten from the text input, and pass our a/v stream along with that call!
     call = peer.call(id, stream);
 
-    //whenever we get a strem, let's display the remote stream!
-    call.on('stream', function(remoteStream){
-      video_elem_other.src = window.URL.createObjectURL(stream) || stream;
-      video_elem_other.setAttribute("autoplay", "true");
-      video_elem_other.play();
-    });
   }, function(err){
     //as usual, anticipate for errors :/
     console.log('failed to get stream',err);
