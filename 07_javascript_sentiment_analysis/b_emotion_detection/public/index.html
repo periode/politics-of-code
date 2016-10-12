@@ -1,7 +1,9 @@
 <html>
 <head>
   <script src="clmtrackr.min.js"></script>
-  <script src="model_lq.js"></script>
+  <script src="model.js"></script>
+  <script src="emotion_model.js"></script>
+  <script src="emotion_classifier.js"></script>
   <script src="script.js"></script>
   <style>
   video, canvas{
@@ -9,10 +11,22 @@
     top: 5%;
     left: 5%;
   }
+
+  ul{
+    position: absolute;
+    left: 5%;
+    bottom: 5%;
+  }
   </style>
 </head>
 <body onload="init()">
 <video id="the-video" width="480" height="320"></video>
 <canvas id="the-canvas" width="480" height="320"></canvas>
+<ul>
+<li id="angry"></li>
+<li id="sad"></li>
+<li id="happy"></li>
+<li id="surprised"></li>
+</ul>
 </body>
 </html>

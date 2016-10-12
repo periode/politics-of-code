@@ -33,12 +33,14 @@ var emotionClassifier = function() {
 		var prediction = [];
 		for (var j = 0;j < emotions.length;j++) {
 			var e = emotions[j];
-			var score = classifier[e].bias
+			var score = classifier[e].bias;
+
 			for (var i = 0;i < coefficient_length;i++) {
 				score += classifier[e].coefficients[i]*parameters[i+6];
 			}
+
 			prediction[j] = {"emotion" : e, "value" : 0.0};
-			prediction[j]['value'] = 1.0/(1.0 + Math.exp(-score));
+			prediction[j]['value'] = parseFloat(1.0/(1.0 + Math.exp(-score)));
 		}
 		return prediction;
 	}
@@ -63,6 +65,8 @@ var emotionClassifier = function() {
 				meanParameters[i] /= 10;
 			}
 
+
+
 			// calculate logistic regression
 			return this.predict(meanParameters);
 		} else {
@@ -70,28 +74,3 @@ var emotionClassifier = function() {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-/////////////////////------------------------------ IN OTHER script
-var ec = new emotionClassifier();
-				ec.init(emotionModel);
-				var emotionData = ec.getBlank();
-
-				/************ d3 code for barchart *****************/
-
-				var margin = {top : 20, right : 20, bottom : 10, left : 40},
-					width = 400 - margin.left - margin.right,
-					height = 100 - margin.top - margin.bottom;
-
-				var barWidth = 30;
-
-				var formatPercent = d3.format(".0%");
-
-				var x = d3.scale.linear()
-					.domain([0, ec.getEmotions().length]).range([margin.left, width+margin.left]);
