@@ -15,7 +15,7 @@ function init(){
   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
   window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
 
-  navigator.getUserMedia({video: true, audio: true}, function(stream){
+  navigator.getUserMedia({video: true, audio: false}, function(stream){
     videoInput.src = window.URL.createObjectURL(stream) || stream;
     videoInput.play();
   }, function(err){
@@ -23,7 +23,7 @@ function init(){
   });
 
   //start the tracker
-  tracker = new clm.tracker();
+  tracker = new clm.tracker({webGL: true});
   tracker.init(pModel);
   tracker.start(videoInput);
 
