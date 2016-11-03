@@ -7,6 +7,7 @@ from nltk.metrics import BigramAssocMeasures
 from nltk.probability import FreqDist, ConditionalFreqDist
 
 
+#define our files
 POLARITY_DATA_DIR = os.path.join('polarityData', 'rt-polaritydata')
 RT_POLARITY_POS_FILE = os.path.join(POLARITY_DATA_DIR, 'rt-polarity-pos.txt')
 RT_POLARITY_NEG_FILE = os.path.join(POLARITY_DATA_DIR, 'rt-polarity-neg.txt')
@@ -33,31 +34,35 @@ def evaluate_features(feature_select):
 	#selects 3/4 of the features to be used for training and 1/4 to be used for testing
 	positive_cutoff = int(math.floor(len(positive_features)*3/4))
 	negative_cutoff = int(math.floor(len(negative_features)*3/4))
+
+	#here we define the features on which the classifier will be trained
 	trainFeatures = positive_features[:positive_cutoff] + negative_features[:negative_cutoff]
 
 	#testFeatures are all the sentences in the last quarter of our training set (the .txt file)
 	testFeatures = positive_features[positive_cutoff:] + negative_features[negative_cutoff:]
 
 	#trains a Naive Bayes Classifier
+	#what is a naive bayes classifier? it looks at occurences in sentences marked as either positive or negative, and then classifies the words that are used the most
 	classifier = NaiveBayesClassifier.train(trainFeatures)
 
-
+	#create default dictionaries so that we can store values inside later on
 	referenceSets = collections.defaultdict(set)
 	testSets = collections.defaultdict(set)
 
 	#separates correctly labeled sentences inside referenceSets and the predictively labeled version inside testSets
     #enumerate the features that are tested
     for i, (features, label) in enumerate(testFeatures):
-		#logs it to referenceSet
+		#logs it to referenceSet, either "pos" or "neg", depending on the label
 		referenceSets[label].add(i)
 
 		#here, the classifier goes through the features of the current sentence we're at, and returns a prediction
+		#of whether it might be either positive or negative
 		predicted = classifier.classify(features)
 
 		#then it adds it to the testSet, either positive or negative
 		testSets[predicted].add(i)
 
-	#prints metrics to show how well the feature selection did
+	#prints metrics to show how well the feature selection did by comparing to the actual labels
 	print '----- RESULT'
 	print 'train on %d instances, test on %d instances' % (len(trainFeatures), len(testFeatures))
 
@@ -93,11 +98,13 @@ def create_word_scores():
 
 	with open(RT_POLARITY_POS_FILE, 'r') as positive_sentences:
 		for i in positive_sentences:
+			#stripping down all the words from extra characters (tabs, punctuation, etc.)
 			positive_word = re.findall(r"[\w']+|[.,!?;]", i.rstrip())
 			all_positive_words.append(positive_word)
 
 	with open(RT_POLARITY_NEG_FILE, 'r') as negative_sentences:
 		for i in negative_sentences:
+			#stripping down all the words from extra characters (tabs, punctuation, etc.)
 			negative_word = re.findall(r"[\w']+|[.,!?;]", i.rstrip())
 			all_negative_words.append(negative_word)
 
@@ -105,6 +112,7 @@ def create_word_scores():
 	all_negative_words = list(itertools.chain(*all_negative_words))
 
 	#build frequency distibution of all words and then frequency distributions of words within positive and negative labels
+	#how often do words appear?
 	word_fd = FreqDist()
 	cond_word_fd = ConditionalFreqDist()
 	for word in negative_words:
