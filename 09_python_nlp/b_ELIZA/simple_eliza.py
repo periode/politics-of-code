@@ -18,12 +18,25 @@ possible_patterns = [
 ]
 
 flip = {
-    "i am" : "you are",
-    "you are": "i am",
+    "i" : "you",
+    "i'm" : "you are",
+    "you're": "i am",
     "me" : "you",
-    "you" : "me",
-
+    "you" : "me"
 }
+
+def reflect(proposition):
+    tokens = proposition.lower().split()
+
+    for i in range(len(tokens)):
+
+        if tokens[i] in flip:
+            current_pronoun = tokens[i]
+            tokens[i] = flip[current_pronoun]
+
+
+    return ' '.join(tokens)
+
 
 def analyze(answer):
     for pattern, answers in possible_patterns:
@@ -34,7 +47,8 @@ def analyze(answer):
 
 
             extracted_proposition = found.groups()[len(found.groups())-1]
-            final_response = eliza_answer.format(*[extracted_proposition])
+            reflected_proposition = reflect(extracted_proposition)
+            final_response = eliza_answer.format(*[reflected_proposition])
 
             return final_response
 
