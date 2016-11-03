@@ -52,7 +52,6 @@ def evaluate_features(feature_select):
 	#separates correctly labeled sentences inside referenceSets and the predictively labeled version inside testSets
     #enumerate the features that are tested
     for i, (features, label) in enumerate(testFeatures):
-		#logs it to referenceSet, either "pos" or "neg", depending on the label
 		referenceSets[label].add(i)
 
 		#here, the classifier goes through the features of the current sentence we're at, and returns a prediction
