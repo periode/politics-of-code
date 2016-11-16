@@ -25,7 +25,7 @@ contract Ballot {
 
     /// Give $(voter) the right to vote on this ballot.
     /// May only be called by $(chairperson).
-    function giveRightToVote(address voter) {
+    function giveRightToVote(address voter){
         if (msg.sender != chairperson || voters[voter].voted) return;
         voters[voter].weight = 1;
     }
@@ -53,6 +53,10 @@ contract Ballot {
         sender.voted = true;
         sender.vote = proposal;
         proposals[proposal].voteCount += sender.weight;
+    }
+
+    function getProposals() returns (uint8){
+      return uint8(proposals.length);
     }
 
     function winningProposal() constant returns (uint8 winningProposal) {
