@@ -6,34 +6,36 @@ function setStatus(message) {
   status.innerHTML = message;
 };
 
-function refreshBalance() {
-  var meta = MetaCoin.deployed();
 
-  meta.getBalance.call(account, {from: account}).then(function(value) {
-    var balance_element = document.getElementById("balance");
-    balance_element.innerHTML = value.valueOf();
-  }).catch(function(e) {
-    console.log(e);
-    setStatus("Error getting balance; see log.");
-  });
+function setStatusVote(message) {
+  var status = document.getElementById("status_vote");
+  status.innerHTML = message;
 };
 
-function sendCoin() {
-  var meta = MetaCoin.deployed();
+function assignVote(){
+  var ballot = Ballot.deployed({from: account}, 3);
 
-  var amount = parseInt(document.getElementById("amount").value);
-  var receiver = document.getElementById("receiver").value;
+  var voter = document.getElementById("voter").value;
 
-  setStatus("Initiating transaction... (please wait)");
-
-  meta.sendCoin(receiver, amount, {from: account}).then(function() {
-    setStatus("Transaction complete!");
-    refreshBalance();
-  }).catch(function(e) {
+  ballot.giveRightToVote(voter, {from: account}).then(function(){
+    setStatusVote("Voting right assigned!");
+  }).catch(function(e){
     console.log(e);
-    setStatus("Error sending coin; see log.");
+    setStatusVote("Error assigning vote; see log.");
   });
-};
+}
+
+
+function fetchProposals(){
+  var ballot = Ballot.deployed();
+
+  ballot.getPropoals.call({from: account}).then(function(proposals){
+    console.log(proposals);
+  }).catch(function(e){
+    console.log(e);
+    setStatusVote("Error finding proposals; see log.");
+  });
+}
 
 window.onload = function() {
   web3.eth.getAccounts(function(err, accs) {
@@ -49,7 +51,5 @@ window.onload = function() {
 
     accounts = accs;
     account = accounts[0];
-
-    refreshBalance();
   });
 }
