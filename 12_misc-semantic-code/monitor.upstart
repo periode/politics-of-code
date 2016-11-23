@@ -1,0 +1,8 @@
+#if the heat of your computer contributes to global warming, shut it down on startup
+
+#alex mclean, 2013
+
+start on startup
+exec if ['perl -pe 's/\D+(\d+).*/\1/'\/proc/acpi/thermal_zone/*/temperature -gt 14] \
+	then shutdown now \
+	fi
