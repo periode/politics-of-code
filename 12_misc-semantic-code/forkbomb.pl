@@ -13,4 +13,5 @@ while (not fork){
 		print 1;
 	}
 }
+
 go to 'twist' if --$strength
