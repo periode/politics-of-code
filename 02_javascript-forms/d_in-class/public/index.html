@@ -5,38 +5,86 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-  <h1>i like forms</h1>
+  <style>
+  div{
+    display: inline;
+    float: left;
+  }
+  </style>
+  <h1>NYUAD Housing Application</h1>
   <hr />
   <form action="/submit" method="POST">
+    <div>
+      
+    
     <label for="user_name">name</label><br />
-    <input name="user_name"></input><br />
+    <input name="name"></input><br />
     <br />
+    </div>
+    <div>
+      
     <label for="user_age">age</label><br />
-    <input name="user_age"></input><br />
+    <input name="age"></input><br />
     <br />
-    <label for="user_religion">religion</label><br />
-    <input type="text" name="user_religion"></input><br />
+    </div>
+    <div>
+      
+    <label for="user_gender">gender</label><br />
+    <input type="text" name="gender"></input><br />
     <br />
-    <input type="checkbox" name="user_happiness" onclick="surreptitiousSend()">are you happy?</input><br />
+    </div>
+    <div>
+      
+    <label for="user_home">distance from home</label><br />
+    <input type="text" name="home"></input><br />
+    <br />
+    </div>
+    <div>
+      
+    <label for="user_income">family income</label><br />
+    <input type="text" name="income"></input><br />
+    <br />
+    </div>
+    <div>
+      
+    <label for="user_history">medical history</label><br />
+    <input type="text" name="history"></input><br />
+    <br />
+    </div>
+    <div>
+      
+    <label for="user_class">class</label><br />
+    <input type="text" name="class"></input><br />
+    <br />
+    </div>
+    <input type="checkbox" name="check"/>
     <button type="submit">submit my answers!</button>
   </form>
   <br /><br />
-  <button onclick="surreptitiousSend()">PIERRE'S CHOICE</button>
   
   <script>
   
+  //this function submits information without reloading the page
+  //convenience vs. clarity
   function surreptitiousSend(){
+    
+    //first we get the value from the first input field
     var name = document.getElementsByTagName('input')[0].value;
+    
+    //we put that into an object (JSON)
     var user = {
       user_name: name
     }
     
+    
+    //here is the actual sending of data
+    //more information at http://www.aaronsw.com/weblog/ajaxhistory
     $.ajax({
-      method: "POST",
-      url: "/submit",
-      data: user
-    }).done(function(response){
-      console.log(response);
+      method: "POST", //this will be handled server-side by "app.post"
+      url: "/submit", //this will be handled server-side by "app.post('/submit')"
+      data: user //this is our actual data, declared on line 46-48
+    }).done(function(response){//this is the function called when the server sends us an answer
+      console.log(response);//and we just log it. we could also display it to the user, if we wanted
     });
   }
   

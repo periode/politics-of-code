@@ -28,6 +28,7 @@ app.get("/submit", function(request, response, error){
 });
 
 app.post("/submit", function (request, response, error){
+  console.log('-----');
   console.log('input', request.body);
   
   var user = {};
@@ -37,7 +38,6 @@ app.post("/submit", function (request, response, error){
   console.log('output', user);
 
   //first we read our file that is in the 'data' folder, and our file is called 'users.json'
-  
   fs.readFile('./data/users.json', function(error, data){
     var whole_file = JSON.parse(data); //once we have the data, we parse it as JSON (because it's just text)
     
