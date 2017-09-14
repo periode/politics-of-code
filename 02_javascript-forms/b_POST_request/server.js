@@ -1,12 +1,11 @@
 var express = require('express');
 var http = require('http');
-var path = require('path');
 var bp = require('body-parser');
 
 var app = new express();
 app.set('port', 8080);
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 app.use(bp.urlencoded({
   extended: true
 }));
