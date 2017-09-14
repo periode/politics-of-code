@@ -36,21 +36,22 @@ app.post("/submit", function (request, response, error){
   console.log('----------');
   console.log('output', user);
 
+  //first we read our file that is in the 'data' folder, and our file is called 'users.json'
   
   fs.readFile('./data/users.json', function(error, data){
-    var file = JSON.parse(data);
+    var whole_file = JSON.parse(data); //once we have the data, we parse it as JSON (because it's just text)
     
-    console.log(data);
-    file.all_users.push(user);
+    //then we add our newly registered user to our array called "all users"
+    //(check the users.json file to see that it's the top level array!)
+    whole_file.all_users.push(user);
     
-    fs.writeFile('./data/users.json', JSON.stringify(all_users), function(error){
-      
-      if(error){
+    //then we write ALL of our data (in the variable 'whole_file')
+    fs.writeFile('./data/users.json', JSON.stringify(whole_file), {flag: 'a'} function(error){
+      if(error){ //hopefully no error?
         console.log(error);
-      }else{
+      }else{//success message!
         console.log('success! written new user',user);  
       }
-      
     });
   });
 
