@@ -46,7 +46,7 @@ app.post("/submit", function (request, response, error){
     whole_file.all_users.push(user);
     
     //then we write ALL of our data (in the variable 'whole_file')
-    fs.writeFile('./data/users.json', JSON.stringify(whole_file), {flag: 'a'} function(error){
+    fs.writeFile('./data/users.json', JSON.stringify(whole_file), function(error){
       if(error){ //hopefully no error?
         console.log(error);
       }else{//success message!
@@ -55,11 +55,26 @@ app.post("/submit", function (request, response, error){
     });
   });
 
-  
-  
-  
   response.send('thank you');
 });
+
+
+app.get("/get-users", function(req, res, err){
+  fs.readFile("./data/users.json", function(err, data){
+    var obj = JSON.parse(data);
+    
+    res.json(obj);
+  });
+});
+
+
+
+
+
+
+
+
+
 
 
 

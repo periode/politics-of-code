@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>forms</title>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
   <h1>i like forms</h1>
@@ -16,8 +17,29 @@
     <label for="user_religion">religion</label><br />
     <input type="text" name="user_religion"></input><br />
     <br />
-    <input type="checkbox" name="user_happiness">are you happy?</input><br />
+    <input type="checkbox" name="user_happiness" onclick="surreptitiousSend()">are you happy?</input><br />
     <button type="submit">submit my answers!</button>
   </form>
+  <br /><br />
+  <button onclick="surreptitiousSend()">PIERRE'S CHOICE</button>
+  
+  <script>
+  
+  function surreptitiousSend(){
+    var name = document.getElementsByTagName('input')[0].value;
+    var user = {
+      user_name: name
+    }
+    
+    $.ajax({
+      method: "POST",
+      url: "/submit",
+      data: user
+    }).done(function(response){
+      console.log(response);
+    });
+  }
+  
+  </script>
 </body>
 </html>
