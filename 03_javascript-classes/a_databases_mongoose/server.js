@@ -1,20 +1,19 @@
 var express = require('express');
-var http = require('http');
-var path = require('path');
-
 var mongoose = require('mongoose');
-
 var app = new express();
+var pug = require('pug');
 var port = 8000;
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
+app.set('view engine', 'pug');
+app.set('views', 'public/views');
 
 app.listen(port, function(){
   console.log('server started on port', port);
 });
 
 //we connect to the database. "test" here refers to the specific database that we want to connect to
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://127.0.0.1/test');
 
 var my_database = mongoose.connection;
 
@@ -39,7 +38,7 @@ my_database.on('open', function(){
   var songSchema = mongoose.Schema({
     title: String,
     artist: String,
-    URL: String
+    url: String
   });
 
   Song = mongoose.model('Song', songSchema);
@@ -89,6 +88,7 @@ app.get('/save', function(req, res, err){
 });
 
 app.get('/list', function(req, res, err){
+  
   Song.find(function(err, all_songs){
     res.write('<h1>list of all songs saved</h1>');
     for(var i = 0; i < all_songs.length; i++){
@@ -98,6 +98,16 @@ app.get('/list', function(req, res, err){
     res.write('that\'s it!');
     res.end();
   });
+  
+});
+
+app.get('/getFirstSong', function(req, res, err){
+  
+  Song.find(function(err, all_songs){
+    var first_song_info = all_songs[1];
+    res.render('song', first_song_info);
+  });
+  
 });
 
 app.get('/deleteAll', function(req, res, err){
