@@ -5,12 +5,12 @@ var path = require('path');
 var mongoose = require('mongoose');
 
 var app = new express();
-app.set('port', 8080);
+var port = 8000;
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log('server started on port', app.get('port'));
+app.listen(port, function(){
+  console.log('server started on port', port);
 });
 
 //we connect to the database. "test" here refers to the specific database that we want to connect to
@@ -85,15 +85,16 @@ app.get('/save', function(req, res, err){
     }
   });
 
-  res.send('successful<br><a href="index.html">back</a>');
+  res.send('successful save!<br><a href="index.html">back</a>');
 });
 
 app.get('/list', function(req, res, err){
   Song.find(function(err, all_songs){
     res.write('<h1>list of all songs saved</h1>');
     for(var i = 0; i < all_songs.length; i++){
-      res.write(all_songs[i].toString()+"<br><br>");
+      res.write(all_songs[i].toString()+"<br><hr><br>");
     }
+    res.write('<br><br>');
     res.write('that\'s it!');
     res.end();
   });
