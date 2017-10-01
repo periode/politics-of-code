@@ -31,7 +31,7 @@ public class GrowthBehaviour : MonoBehaviour {
 				resourceYield -= depletionRate;
 		}
 
-		resourceYield += replenishRate;
+		resourceYield += replenishRate*0.1f;
 
 
 		this.transform.localScale = new Vector3((resourceYield), (resourceYield), (resourceYield));

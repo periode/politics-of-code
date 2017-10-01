@@ -18,7 +18,7 @@ public class MainBehaviour : MonoBehaviour {
 			this.GetComponent<Renderer> ().material.color = Color.blue;
 		}
 
-		health = maxHealth;
+		health = maxHealth * Random.Range(0.8f, 1.2f);
 	}
 	
 	// Update is called once per frame
@@ -44,7 +44,7 @@ public class MainBehaviour : MonoBehaviour {
 		GameObject[] res = GameObject.FindGameObjectsWithTag("Resource");
 
 		for(int i = 0; i < res.Length; i++){
-			if(Vector3.Distance(this.transform.position, res[i].transform.position) < res[i].transform.localScale.x){
+			if(Vector3.Distance(this.transform.position, res[i].transform.position) < res[i].transform.localScale.x*1.5f){
 				health += feed;
 			}
 		}

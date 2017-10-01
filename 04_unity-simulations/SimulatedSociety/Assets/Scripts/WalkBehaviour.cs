@@ -13,11 +13,6 @@ public class WalkBehaviour : MonoBehaviour {
 	public float minimumResourceDistance;
 
 
-	//PRIVATE VARIABLES
-
-
-
-
 
 	// Use this for initialization
 	void Start () {
@@ -33,9 +28,10 @@ public class WalkBehaviour : MonoBehaviour {
 			this.transform.position = Vector3.MoveTowards (this.transform.position, FindFriendPosition (), step);
 		}
 
-		if(FindResourcePosition() != new Vector3(0, 0, 0)){
+		Vector3 res = FindResourcePosition ();
+		if(res != new Vector3(0, 0, 0)){
 			step = maxMovementSpeedResource * Time.deltaTime;
-			this.transform.position = Vector3.MoveTowards (this.transform.position, FindResourcePosition (), step);	
+			Vector3.MoveTowards (this.transform.position, res, step);	
 		}
 
 	}
@@ -66,8 +62,9 @@ public class WalkBehaviour : MonoBehaviour {
 		int closeResources = 0;
 
 		for(int i = 0; i < resources.Length; i++){
-			if(Vector3.Distance(resources[i].transform.position, this.transform.position) < minimumResourceDistance + resources[i].transform.localScale.x*0.85f){
-				averageResourcePosition += resources [i].transform.position;
+			if(Vector3.Distance(resources[i].transform.position, this.transform.position) < minimumResourceDistance + resources[i].transform.localScale.x*0.85f && resources[i].transform.localScale.x > 0.7f){
+				averageResourcePosition.x += resources [i].transform.position.x;
+				averageResourcePosition.z += resources [i].transform.position.z;
 				closeResources++;
 			}
 		}

@@ -13,9 +13,9 @@ public class SpawningManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		SpawnResources (numberOfResources);
 		SpawnAgents ("Red", numberOfRedAgents);
 		SpawnAgents ("Blue", numberOfBlueAgents);
-		SpawnResources (numberOfResources);
 	}
 	
 	// Update is called once per frame
