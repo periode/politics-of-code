@@ -1,5 +1,5 @@
 var peer;
-var link;
+var conn;
 var status_elem;
 var data_elem;
 
@@ -11,26 +11,35 @@ function init(){
 
   //this is where we connect to a server hosted by peerJS - go to http://peerjs.com/peerserver to get an api key
   peer = new Peer(my_peer_id, {key: api_key});
-
-  //sanity check: do we have a connection?
-  console.log('connected', peer);
+  // peer = new Peer(my_peer_id, {host: '127.0.0.1', port: 2046, path:'/peer', debug:3});
 
   //we get a reference to the HTML elements to display the status of our connection, and the messages received
   status_elem = document.getElementById('status');
   data_elem = document.getElementById('data-holder');
 
-  //we change our status
-  status_elem.innerHTML = 'status: connected to server';
-
   //now that we have a peer, we add an event listener for when we connect
-  peer.on('connection', function(connect){
-
-    //within that event listener, we add another one >> when we are connected, we listen for 'data' objects
-    connect.on('data', function(data){
-
-      //now we set the innerHTML of the data-holder element
-      data_elem.innerHTML = data;
+  peer.on('open', function(id){
+    console.log(peer.id);
+    status_elem.innerHTML = 'status: connected to server';
+    
+    
+    peer.on('connection', function(dataConnection){
+      console.log('received connection');
+          
+      dataConnection.on('open', function(data){
+        //now we set the innerHTML of the data-holder element
+        console.log('oppppened');
+      });
+      
+      dataConnection.on('data', function(data){
+        //now we set the innerHTML of the data-holder element
+        data_elem.innerHTML = data;
+      });
     });
+  });
+  
+  peer.on('error', function(err){
+    console.log(err);
   });
 }
 
@@ -40,15 +49,36 @@ function connect(){
   var id = document.getElementById('peer-id').value;
 
   //then, we actually create a connection to that peer
-  link = peer.connect(id);
+  var conn = peer.connect(id);
 
   //update the status div
   status_elem.innerHTML = 'status: connecting to '+id+'...';
+  
+  conn.on('error', function(err){
+    console.log(err);
+  });
 
   //we set up an event listener for completion, which tells that we've indeed connected
-  link.on('open', function(){
+  conn.on('open', function(){
+    console.log('connected');
     status_elem.innerHTML = 'status: opened connection to '+id;
+    
+    conn.send('hey');
   });
+  
+  conn.on('data', function(data){
+
+    //now we set the innerHTML of the data-holder element
+    data_elem.innerHTML = data;
+  });
+  
+  
+  
+  conn.on('close', function(){
+    console.log('closed');
+  })
+  
+  
 }
 
 //this function is called when we click on the SEND button
@@ -56,6 +86,6 @@ function send(){
   //first, we get the message
   var msg = document.getElementById('peer-msg').value;
 
-  //then, we send the message through the link
-  link.send(msg);
+  //then, we send the message through the conn
+  conn.send(msg);
 }
