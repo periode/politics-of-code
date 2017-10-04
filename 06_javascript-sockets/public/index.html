@@ -4,8 +4,19 @@
   <title>sockets!!</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
   <script src="message_board.js"></script>
+  <style>
+  canvas{
+    width: 600px;
+    height: 600px;
+    }</style>
 </head>
-<body>
-  
+<body onload="initWebRTC()">
+  <input id="input-field" type="text" /><button onclick="sendMessage()">send message</button>
+  <div id="message-board">
+    
+  </div>
+  <video id="thevideo"></video>
+  <canvas id="thecanvas"></canvas>
+  <img id="imagefile" src="" />
 </body>
 </html>
