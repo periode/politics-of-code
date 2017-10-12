@@ -1,0 +1,10 @@
+{
+	"name":"Boilerplate Extension",
+	"manifest_version":2,
+	"version":"0.1",
+	"browser_action":{
+		"default_icon": "icon.png",
+		"default_title": "Boilerplate Hello",
+		"default_popup": "popup.html"
+	}
+}
