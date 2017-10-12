@@ -10,19 +10,24 @@ var t = new Twit({
 
 var listed_users = [];
 
-t.get('search/tweets', {q: 'france since:2016-09-26', count: 100}, function(err, data, response){
-  var found_user = {};
-  for(var result in data.statuses){
-    console.log('-----------------------------------------');
-    // console.log(data.statuses[result].user.name);
-    // console.log(data.statuses[result].user.id);
-    // console.log(data.statuses[result].text);
-
-    found_user.username = data.statuses[result].user.name;
-    found_user.userid = data.statuses[result].user.id;
-
-    console.log(found_user);
-
-    listed_users.push(found_user);
+t.get('search/tweets', {q: 'pope clinton', count: 100}, function(err, data, response){
+  for(var i = 0; i < data.statuses.length; i++){
+    console.log(data.statuses[i].text);
+    console.log(data.statuses[i].user.followers_count);
+    console.log('------------------');
   }
+  // var found_user = {};
+  // for(var result in data.statuses){
+  //   console.log('-----------------------------------------');
+  //   // console.log(data.statuses[result].user.name);
+  //   // console.log(data.statuses[result].user.id);
+  //   // console.log(data.statuses[result].text);
+  //
+  //   found_user.username = data.statuses[result].user.name;
+  //   found_user.userid = data.statuses[result].user.id;
+  //
+  //   console.log(found_user);
+  //
+  //   listed_users.push(found_user);
+  // }
 });
