@@ -1,10 +1,10 @@
 ======= SYSTEM
 > describe your system in as much detail as you can by drawing it as a diagram
 
->> what is the state of your system?
+>> what is the state of your system (e.g. emotional interaction, headlines written, amount of google owned)?
 
->> what are the inflows and outflows? what are the feedback loops?
+>> what are the inflows and outflows (money, humans, body language)? what are the feedback loops? what is encouraging positive behavior? what is discouraging negative behavior?
 
 >> can you identify your leverage points?
 
->> are those leverage points physical or informational?
+>> are those leverage points physical (e.g. changing headlines or using CPU cycles) or informational (representing existing data in a different way)?

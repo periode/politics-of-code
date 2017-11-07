@@ -19,9 +19,12 @@ reflections = {
 }
 
 psychobabble = [
-    [r'i feel (.*).',
+    [r'I feel (.*)',
      ["Why do you feel {0}?",
       "Tell me more about why you feel {0}."]],
+     [r'I mean (.*).',
+      ["How come you mean {0}?",
+       "Hmm. {0}. Why is that?"]],
 
     [r'(.*)\?',
      ["Why is that?",
@@ -67,6 +70,7 @@ def analyze(answer):
 
             return final_response
 
+print "Hello, my name is Eliza."
 while True:
     user = raw_input('>')
     print analyze(user)
