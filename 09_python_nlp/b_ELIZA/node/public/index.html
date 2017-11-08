@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>eliza</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script>
+  function send(){
+    var w = document.getElementById('words').value;
+    document.getElementById('dialogue').innerHTML += "<br>you: " + w;
+
+    $.ajax({
+      method: "POST",
+      url: '/discuss',
+      data: {words: w}
+    }).done(function(msg){
+      document.getElementById('dialogue').innerHTML += "<br>eliza: " + msg;
+    });
+  }
+  </script>
+</head>
+<body>
+  <h1>the doctor is in</h1>
+  <div id="dialogue">
+    eliza: hello. how are you feeling today?
+  </div>
+  <input type="text" id="words"/>
+  <button onclick="send()">tell</button>
+</body>
+</html>
