@@ -12,15 +12,15 @@
       url: '/discuss',
       data: {words: w}
     }).done(function(msg){
-      document.getElementById('dialogue').innerHTML += "<br>eliza: " + msg;
+      document.getElementById('dialogue').innerHTML += "<br>lucy: " + msg;
     });
   }
   </script>
 </head>
-<body>
-  <h1>the doctor is in</h1>
-  <div id="dialogue">
-    eliza: hello. how are you feeling today?
+<body style="margin-left: 10%;">
+  <img style=""src="https://1.bp.blogspot.com/-qFgzdcZDXfY/TnabKbPXLmI/AAAAAAAAG_w/wx-S9kVnnTY/s320/Lucy%2B-%2Bpsychiatric%2Bhelp%2B5%2Bcents.gif" />
+  <div style="margin-top: 5%" id="dialogue">
+    lucy: hello. how are you feeling today?
   </div>
   <input type="text" id="words"/>
   <button onclick="send()">tell</button>
