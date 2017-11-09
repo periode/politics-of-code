@@ -4,6 +4,7 @@ var bp = require('body-parser')
 var port = 2046;
 var app = express();
 
+//this we need because i'm doing post requests
 app.use(bp.urlencoded({
   extended: true
 }));

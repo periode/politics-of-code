@@ -21,9 +21,9 @@ def evaluate_features(feature_select):
 	#breaks up the sentences into lists of individual words (as selected by the input mechanism) and appends 'pos' or 'neg' after each list
 	with open(RT_POLARITY_POS_FILE, 'r') as positive_sentences:
 		for i in positive_sentences:
-			negative_words = re.findall(r"[\w']+|[.,!?;]", i.rstrip())
-			negative_words = [feature_select(negative_words), 'pos']
-			positive_features.append(negative_words)
+			positive_word = re.findall(r"[\w']+|[.,!?;]", i.rstrip())
+			positive_word = [feature_select(positive_word), 'pos']
+			positive_features.append(positive_word)
 	with open(RT_POLARITY_NEG_FILE, 'r') as negative_sentences:
 		for i in negative_sentences:
 			negative_word = re.findall(r"[\w']+|[.,!?;]", i.rstrip())
@@ -51,7 +51,7 @@ def evaluate_features(feature_select):
 
 	#separates correctly labeled sentences inside referenceSets and the predictively labeled version inside testSets
     #enumerate the features that are tested
-    for i, (features, label) in enumerate(testFeatures):
+	for i, (features, label) in enumerate(testFeatures):
 		referenceSets[label].add(i)
 
 		#here, the classifier goes through the features of the current sentence we're at, and returns a prediction

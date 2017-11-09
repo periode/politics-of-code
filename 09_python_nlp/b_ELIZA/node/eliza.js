@@ -40,19 +40,22 @@ module.exports.process = function(input){
   for (var k=0; k<keywords.length; k++) {
     var regex =  new RegExp(keywords[k][0], 'i');
 
-    console.log(sentiment(input));
-    
+    // console.log(sentiment(input));
+
 		if (regex.test(input)) {
       var match = input.match(regex);
+			console.log(match)
 
       var template = keywords[k][1][Math.floor(Math.random()*keywords[k][1].length)];
+
       if(match[3] != undefined)
         reply = template.replace('(2)', match[3]).trim()
       else
-        reply = template
+        reply = template.replace('(2)', 'that').trim()
 
       return reply
 		}
 	}
+
   if (reply!='') return "I'm at loss for words.";
 }
