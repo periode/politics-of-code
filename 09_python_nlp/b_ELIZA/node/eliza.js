@@ -1,4 +1,5 @@
 var exports = module.exports = {}
+var sentiment = require('sentiment')
 
 var reply = 'nope';
 
@@ -38,7 +39,9 @@ var keywords = [
 module.exports.process = function(input){
   for (var k=0; k<keywords.length; k++) {
     var regex =  new RegExp(keywords[k][0], 'i');
-    console.log('searchin for',keywords[k][0],'?',regex.test(input));
+
+    console.log(sentiment(input));
+    
 		if (regex.test(input)) {
       var match = input.match(regex);
 
