@@ -10,7 +10,7 @@ function War(country_a,country_b) {
     }else {
         this.winner = country_b.name
     }
-    this.length = 100*(force_b-force_a)*(force_b-force_a)
+    this.length = Math.floor(100/((force_b-force_a)*(force_b-force_a)))
 }
 
 var DPRK = new Object();
@@ -22,7 +22,7 @@ DPRK.power = 0.5;
 var ROK = new Object();
 ROK.name = "ROK";
 ROK.allies = US;
-ROK.power = 0.9;
+ROK.power = 0.7;
 
 var US = new Object();
 US.name = "US";
