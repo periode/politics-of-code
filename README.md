@@ -1,5 +1,5 @@
 # Politics Of Code
-Repository for the code, readings and resources for the Politics of Code class at NYU AD Fall 2017
+Repository for the code, readings and resources for the Politics of Code class at NYU AD Fall 2017. **Find all the relevant course material in [the wiki](https://github.com/periode/politics-of-code/wiki).**
 
 ### Instructor
 Pierre Depaz (pierre.depaz@nyu.edu)
@@ -7,6 +7,7 @@ Pierre Depaz (pierre.depaz@nyu.edu)
 
 ### Meeting Time
 Tuesday — 2:40 - 3:55PM - C3-153
+
 Thursday — 2:40 - 5:20PM - C3-153
 
 
