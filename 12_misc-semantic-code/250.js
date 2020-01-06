@@ -1,5 +1,3 @@
-//pierre depaz, 2014
-
 var life = true;
 var lastWords = false;
 var him;

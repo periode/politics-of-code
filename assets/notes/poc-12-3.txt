@@ -1,0 +1,11 @@
+purna:
+
+- captures the essence of the world in which the person who wrote it exists (how that world is designated)
+- expression of what the coder was thinking
+- it doesn’t matter because most people don’t read the source code
+- the mentality is translated into the whole design of the game
+
+> perspective of the player
+
+
+

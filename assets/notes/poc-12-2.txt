@@ -1,0 +1,18 @@
+voltages > raw matter
+binary > signifiers that are un-ambiguous
+assembly > english letters > more ambiguous
+
+functional programming > addition / multiplication > name variables
+
+object oriented programming > encapsulate blocks of code into objects, which are reusable. each object contains its own variables and methods.
+
+oop  > code and thought get similar
+
+Patient(){
+	time_to_treat = 0
+
+}
+
+
+
+
